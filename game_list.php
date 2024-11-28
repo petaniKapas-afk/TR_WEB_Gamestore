@@ -1,28 +1,33 @@
+<!-- game_list.php -->
 <?php
 require 'koneksi.php';
 
-$stmt = $conn->prepare("SELECT * FROM games");
+// Handle search input
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+$search_param = '%' . $search . '%';
+
+// Prepare and execute statement
+$stmt = $conn->prepare("SELECT * FROM games WHERE title LIKE ? ORDER BY title ASC");
+$stmt->bind_param('s', $search_param);
 $stmt->execute();
 $result = $stmt->get_result();
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game List</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <h2>Available Games</h2>
+
+<div id="game-list" class="game-list">
+    <!-- Search Form -->
+    <form method="GET" action="">
+        <input type="text" name="search" placeholder="Search games..." value="<?php echo htmlspecialchars($search); ?>">
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- Game List -->
     <ul>
         <?php while ($game = $result->fetch_assoc()): ?>
             <li>
                 <a href="game_detail.php?id=<?php echo $game['id']; ?>">
-                    <?php echo $game['title']; ?> - $<?php echo $game['price']; ?>
+                    <?php echo htmlspecialchars($game['title']); ?> - $<?php echo number_format($game['price'], 2); ?>
                 </a>
             </li>
         <?php endwhile; ?>
     </ul>
-</body>
-</html>
+</div>
