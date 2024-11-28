@@ -19,7 +19,7 @@
        </header>
 
     <section class="explore-section">
-        <h2>Explore Our Games</h2>
+        <h2>Explore Our t Games</h2>
         <button id="see-games">See Games</button>
         <div id="game-list-container" style="display: none;">
             <?php include 'game_list.php'; ?>
