@@ -73,9 +73,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </select>
 
         <button type="submit">Login</button>
+        <p>Don't have an account? <a href="daftar.php">Register as a User</a></p>
 
     </form>
 
+<<<<<<< HEAD
     <p style="text-align:center;">Don't have an account? <a href="daftar.php">Register as a User</a></p>
+=======
+>>>>>>> 960f3a6f7bbb7dcd46acae7d1a37945b51f7d68f
 </body>
 </html>
