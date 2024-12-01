@@ -48,6 +48,7 @@ nav ul li {
 
 nav ul li a {
     font-size: 16px;
+    font-weight: bold;
     color: #000000;
     background-color: #ff9800;
     padding: 10px 20px;
@@ -181,4 +182,32 @@ footer {
     .form-box {
         width: 100%;
     }
+}
+
+.explore-section {
+    text-align: center;
+    padding: 2rem;
+}
+
+#see-games {
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #ff9800;
+    color: #121212;
+    border: 2px solid #e68900;
+    border-radius: 8px;
+    padding: 0.8rem 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#see-games:hover {
+    background-color: #e68900;
+    color: #fff;
+    border-color: #d97700;
+    transform: translateY(-2px);
+}
+
+#see-games:active {
+    transform: scale(0.95);
 }
