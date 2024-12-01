@@ -11,7 +11,7 @@ if (!isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Pengguna</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
     <style>
         /* Gaya tata letak */
         body {
@@ -70,6 +70,7 @@ if (!isset($_SESSION['user_id'])) {
             box-sizing: border-box;
         }
     </style>
+
 </head>
 <body>
     <header>
@@ -110,6 +111,7 @@ if (!isset($_SESSION['user_id'])) {
             }
             ?>
         </div>
+
         <style>
             .form-title {
                 font-weight: bold; /* Membuat teks tebal */
@@ -117,6 +119,8 @@ if (!isset($_SESSION['user_id'])) {
                 margin-bottom: 10px; /* Memberikan jarak bawah */
             }
         </style>
+
+
         </div>
     </main>
 </body>
