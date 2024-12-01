@@ -25,25 +25,35 @@ $transactions_result = $conn->query($query_transactions);
 
 // Periksa apakah form ditambahkan atau diedit
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['title'], $_POST['price'], $_POST['description'], $_POST['stock'])) {
+    if (isset($_POST['title'], $_POST['price'], $_POST['description'], $_POST['stock'], $_FILES['image'])) {
         // Pastikan semua data ada
         $title = $_POST['title'];
         $price = $_POST['price'];
         $description = $_POST['description'];
         $stock = $_POST['stock'];
 
-        // Query untuk menambah game baru
-        $insert_query = "INSERT INTO games (title, description, price, stock) VALUES (?, ?, ?, ?)";
-        $stmt = $conn->prepare($insert_query);
-        $stmt->bind_param("ssdi", $title, $description, $price, $stock);  // "ssdi" untuk string, string, decimal, integer
+        // Menangani upload gambar
+        $image = $_FILES['image']['name'];
+        $image_tmp = $_FILES['image']['tmp_name'];
+        $image_path = 'uploads/' . basename($image);
 
-        if ($stmt->execute()) {
-            echo "Game added successfully!";
+        // Pindahkan gambar ke folder uploads
+        if (move_uploaded_file($image_tmp, $image_path)) {
+            // Query untuk menambah game baru
+            $insert_query = "INSERT INTO games (title, description, price, stock, image) VALUES (?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($insert_query);
+            $stmt->bind_param("ssdis", $title, $description, $price, $stock, $image);  // "ssdis" untuk string, string, decimal, integer, string
+
+            if ($stmt->execute()) {
+                echo "Game added successfully!";
+            } else {
+                echo "Error adding game: " . $stmt->error;
+            }
         } else {
-            echo "Error adding game: " . $stmt->error;
+            echo "Error uploading image!";
         }
     } else {
-        echo "Missing game information!";
+        echo "Missing game information or image!";
     }
 }
 ?>
@@ -182,6 +192,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <th>Game ID</th>
             <th>Game Title</th>
             <th>Price</th>
+            <th>Image</th>
             <th>Actions</th>
         </tr>
         <?php while ($game = $games_result->fetch_assoc()) { ?>
@@ -189,6 +200,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <td><?php echo $game['id']; ?></td>
                 <td><?php echo $game['title']; ?></td>
                 <td><?php echo $game['price']; ?></td>
+                <td>
+                    <?php if ($game['image']) { ?>
+                        <img src="uploads/<?php echo $game['image']; ?>" alt="Game Image" width="100">
+                    <?php } else { ?>
+                        No image available
+                    <?php } ?>
+                </td>
                 <td>
                     <a href="edit_game.php?id=<?php echo $game['id']; ?>" class="btn">Edit</a>
                     <a href="delete_game.php?id=<?php echo $game['id']; ?>" class="btn" style="background-color: red;">Delete</a>
