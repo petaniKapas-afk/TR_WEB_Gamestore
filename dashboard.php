@@ -20,7 +20,6 @@ if (!isset($_SESSION['user_id'])) {
         <h1>Selamat Datang, <?php echo $_SESSION['username']; ?></h1>
         <nav>
             <ul>
-                <li><a href="game_list.php">Lihat Daftar Game</a></li>
                 <li><a href="transaction_history.php">Lihat Histori Transaksi</a></li>
                 <li><a href="buy_game.php">Beli Game</a></li>
                 <li><a href="logout.php">Logout</a></li>
@@ -55,7 +54,26 @@ if (!isset($_SESSION['user_id'])) {
                 ?>
             </div>
         </div>
+        <br><br>
+        <section class="explore-section">
+        <a id="see-games">Lihat Daftar Game</a>
+        <div id="game-list-container" style="display: none;">
+            <?php include 'game_list.php'; ?>
+        </div>
+    </section>
     </main>
+    <script>
+        document.getElementById('see-games').addEventListener('click', function() {
+            var gameListContainer = document.getElementById('game-list-container');
+            if (gameListContainer.style.display === 'none') {
+                gameListContainer.style.display = 'block';
+                this.textContent = 'Tutup Daftar Game';
+            } else {
+                gameListContainer.style.display = 'none';
+                this.textContent = 'Lihat Daftar Game';
+            }
+        });
+    </script>
 </body>
 
 </html>
