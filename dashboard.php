@@ -63,12 +63,14 @@ if (!isset($_SESSION['user_id'])) {
             top: 10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 52%; 
-            padding: 10px;
+            width: 40%;
+            padding: 20px;
             border: 1px solid #ddd;
             background-color: rgba(255, 255, 255, 0.8); /* Transparan tapi cukup jelas */
-            z-index: 1; /* Form box berada di bawah tabel */
             box-sizing: border-box;
+        }
+        .qwe{
+            color : black;
         }
     </style>
 </head>
@@ -86,35 +88,11 @@ if (!isset($_SESSION['user_id'])) {
     </header>
     
     <main>
-        <h2>Dashboard Pengguna</h2>
-        <p>Selamat Datang di Dasboard Anda. Silakan pilih opsi di atas untuk melanjutkan.</p>
-        <!-- Menampilkan histori transaksi jika ada -->
-        <h3>Riwayat Transaksi Terakhir</h3>
-        <?php
-        // Mengambil data transaksi terbaru pengguna
-        require 'koneksi.php';
-        $user_id = $_SESSION['user_id'];
-        $query = "SELECT * FROM transactions WHERE user_id = ? ORDER BY transaction_date DESC LIMIT 1";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("i", $user_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
         
-        if ($transaction = $result->fetch_assoc()) {
-            // Menampilkan data transaksi terbaru
-            echo "<p><strong>ID Transaksi:</strong> " . $transaction['id'] . "</p>";
-            echo "<p><strong>Metode Pembayaran:</strong> " . $transaction['payment_method'] . "</p>";
-            echo "<p><strong>Total Pembayaran:</strong> Rp " . number_format($transaction['total_amount'], 0, ',', '.') . "</p>";
-            echo "<p><strong>Tanggal Transaksi:</strong> " . $transaction['transaction_date'] . "</p>";
-            echo "<p><strong>Status:</strong> " . $transaction['status'] . "</p>";
-        } else {
-            echo "<p>Anda belum melakukan transaksi apapun.</p>";
-        }
-        ?>
+        <h3 class="qwe">Riwayat Transaksi Terakhir</h3>
         <div class="container">
-            <!-- Form box untuk tampilan lebih rapi -->
             <div class="form-box">
-                <h3>Riwayat Transaksi Terakhir</h3>
+                
                 <?php
                 require 'koneksi.php';
                 $user_id = $_SESSION['user_id'];
@@ -130,13 +108,13 @@ if (!isset($_SESSION['user_id'])) {
                     echo "<tr><th>Metode Pembayaran</th><td>" . $transaction['payment_method'] . "</td></tr>";
                     echo "<tr><th>Total Pembayaran</th><td>Rp " . number_format($transaction['total_amount'], 0, ',', '.') . "</td></tr>";
                     echo "<tr><th>Tanggal Transaksi</th><td>" . $transaction['transaction_date'] . "</td></tr>";
+                    echo "<tr><th>Status</th><td>" . $transaction['status'] . "</td></tr>";
                     echo "</table>";
                 } else {
                     echo "<p>Anda belum melakukan transaksi apapun.</p>";
                 }
                 ?>
             </div>
-
         </div>
     </main>
 </body>
