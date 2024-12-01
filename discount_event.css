@@ -1,0 +1,154 @@
+/* discount_event.css */
+
+/* Reset and Basic Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffcc33, #ff6699);
+    background-attachment: fixed;
+    color: #333;
+}
+
+header {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    text-align: center;
+    border-bottom: 2px solid #fff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-size: 2.5em;
+    color: #444;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+main {
+    padding: 40px;
+    max-width: 800px;
+    margin: 40px auto;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 8px;
+    font-size: 1.1em;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="datetime-local"],
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus,
+.form-group input[type="datetime-local"]:focus,
+.form-group select:focus {
+    border-color: #ff6699;
+    outline: none;
+}
+
+.games-list {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 15px;
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.game-item {
+    margin-bottom: 12px;
+}
+
+.game-item input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-right: 10px;
+}
+
+.game-item label {
+    font-size: 1.05em;
+    color: #333;
+}
+
+form button {
+    background-color: #ff6699;
+    color: #fff;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+form button:hover {
+    background-color: #ff3366;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+}
+
+.error-message, .success-message {
+    padding: 15px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.error-message {
+    background-color: #ffe6e6;
+    color: #d8000c;
+    border: 1px solid #d8000c;
+}
+
+.success-message {
+    background-color: #e6ffe6;
+    color: #4f8a10;
+    border: 1px solid #4f8a10;
+}
+
+@media (max-width: 600px) {
+    main {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+
+    form button {
+        width: 100%;
+        padding: 12px;
+    }
+}
