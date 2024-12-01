@@ -2,6 +2,7 @@
 session_start();
 require 'koneksi.php';
 
+// Pastikan user sudah login
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit();
@@ -9,8 +10,12 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Ambil riwayat transaksi pengguna
-$query = "SELECT * FROM transactions WHERE user_id = ?";
+// Ambil riwayat transaksi user
+$query = "SELECT t.id, g.title, t.amount, t.payment_method, t.status, t.transaction_date 
+          FROM transactions t
+          JOIN games g ON t.game_id = g.id
+          WHERE t.user_id = ?
+          ORDER BY t.transaction_date DESC";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
@@ -22,23 +27,40 @@ $result = $stmt->get_result();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Histori Transaksi</title>
+    <title>Riwayat Transaksi</title>
+    <link rel="stylesheet" href="transaction_history.css">
 </head>
 <body>
-    <h1>Histori Transaksi</h1>
-    <table border="1">
-        <tr>
-            <th>ID Transaksi</th>
-            <th>Total Pembayaran</th>
-            <th>Tanggal Transaksi</th>
-        </tr>
-        <?php while ($transaction = $result->fetch_assoc()) { ?>
-            <tr>
-                <td><?php echo $transaction['id']; ?></td>
-                <td><?php echo number_format($transaction['total_amount'], 0, ',', '.'); ?></td>
-                <td><?php echo $transaction['transaction_date']; ?></td>
-            </tr>
-        <?php } ?>
-    </table>
+    <div class="container">
+        <div class="header">
+            <a href="javascript:history.back()" class="back-button">← back</a>
+            <h1>Riwayat Transaksi</h1>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Game</th>
+                    <th>Jumlah</th>
+                    <th>Metode Pembayaran</th>
+                    <th>Status</th>
+                    <th>Tanggal Transaksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $counter = 1; while ($transaction = $result->fetch_assoc()): ?>
+                    <tr>
+                        <td><?php echo $counter++; ?></td>
+                        <td><?php echo htmlspecialchars($transaction['title']); ?></td>
+                        <td>Rp <?php echo number_format($transaction['amount'], 0, ',', '.'); ?></td>
+                        <td><?php echo htmlspecialchars($transaction['payment_method']); ?></td>
+                        <td><?php echo htmlspecialchars($transaction['status']); ?></td>
+                        <td><?php echo date('d-m-Y H:i:s', strtotime($transaction['transaction_date'])); ?></td>
+                    </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

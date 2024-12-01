@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gamestore</title>
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="index.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -14,7 +14,6 @@
                <div class="auth-links">
                    <a href="login.php">Login</a>
                    <a href="daftar.php">Register</a>
-               </div>
            </div>
        </header>
 

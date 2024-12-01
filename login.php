@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
     <form method="POST" action="">
@@ -76,6 +76,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     </form>
 
-    <p>Don't have an account? <a href="daftar.php">Register as a User</a></p>
+    <p style="text-align:center;">Don't have an account? <a href="daftar.php">Register as a User</a></p>
 </body>
 </html>

@@ -16,15 +16,30 @@ if (isset($_GET['id'])) {
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Game</title>
+    <link rel="stylesheet" href="game_detail.css">
 </head>
+
 <body>
-    <h1><?php echo $game['title']; ?></h1>
-    <p><strong>Harga:</strong> <?php echo $game['price']; ?></p>
-    <p><strong>Deskripsi:</strong> <?php echo $game['description']; ?></p>
-    <p><strong>Stok:</strong> <?php echo $game['stock']; ?></p>
+    <div class="container">
+        <h1><?php echo $game['title']; ?></h1>
+
+        <div class="game-info">
+            <h3>Detail Game</h3>
+            <p><strong>Harga:</strong> Rp <?php echo number_format($game['price'], 0, ',', '.'); ?></p>
+            <p><strong>Deskripsi:</strong> <?php echo $game['description']; ?></p>
+            <p><strong>Stok:</strong> <?php echo $game['stock']; ?></p>
+        </div>
+
+        <div class="button-container">
+            <a href="javascript:history.back()" class="back-button">Kembali</a>
+            <a href="buy_game.php" class="back-button">Beli Sekarang</a>
+        </div>
+    </div>
 </body>
+
 </html>

@@ -11,7 +11,7 @@ if (!isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Pengguna</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
     <header>
@@ -48,6 +48,7 @@ if (!isset($_SESSION['user_id'])) {
             echo "<p><strong>Metode Pembayaran:</strong> " . $transaction['payment_method'] . "</p>";
             echo "<p><strong>Total Pembayaran:</strong> Rp " . number_format($transaction['total_amount'], 0, ',', '.') . "</p>";
             echo "<p><strong>Tanggal Transaksi:</strong> " . $transaction['transaction_date'] . "</p>";
+            echo "<p><strong>Status:</strong> " . $transaction['status'] . "</p>";
         } else {
             echo "<p>Anda belum melakukan transaksi apapun.</p>";
         }

@@ -64,28 +64,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['payment_method'])) {
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pembelian Game</title>
+    <link rel="stylesheet" href="buy_game.css">
 </head>
+
 <body>
-    <h1>Pembelian Game</h1>
-    <form method="POST" action="buy_game.php">
-        <h2>Pilih Game yang Ingin Dibeli</h2>
-        <?php while ($game = $result_games->fetch_assoc()) { ?>
-            <input type="checkbox" name="game_ids[]" value="<?php echo $game['id']; ?>">
-            <?php echo $game['title']; ?> - Rp <?php echo number_format($game['price'], 0, ',', '.'); ?><br>
-        <?php } ?>
+    <div class="container">
+        <h1>Pembelian Game</h1>
+        <form method="POST" action="buy_game.php">
+            <h2>Pilih Game yang Ingin Dibeli</h2>
+            <div class="game-list">
+                <?php while ($game = $result_games->fetch_assoc()) { ?>
+                    <div class="game-item">
+                        <label>
+                            <input type="checkbox" name="game_ids[]" value="<?php echo $game['id']; ?>">
+                            <?php echo $game['title']; ?> - Rp <?php echo number_format($game['price'], 0, ',', '.'); ?>
+                        </label>
+                    </div>
+                <?php } ?>
+            </div>
 
-        <h2>Pilih Metode Pembayaran</h2>
-        <select name="payment_method" required>
-            <option value="credit_card">Kartu Kredit</option>
-            <option value="bank_transfer">Transfer Bank</option>
-            <option value="e_wallet">Dompet Digital</option>
-        </select><br><br>
+            <h2>Pilih Metode Pembayaran</h2>
+            <select name="payment_method" required>
+                <option value="" disabled selected>Pilih metode pembayaran</option>
+                <option value="credit_card">Kartu Kredit</option>
+                <option value="bank_transfer">Transfer Bank</option>
+                <option value="e_wallet">Dompet Digital</option>
+            </select>
 
-        <button type="submit">Lanjutkan ke Pembayaran</button>
-    </form>
+            <div class="button-group">
+                <button type="submit">Lanjutkan ke Pembayaran</button>
+                <a href="javascript:history.back()" class="cancel-button">Batal</a>
+            </div>
+        </form>
+    </div>
 </body>
+
 </html>
