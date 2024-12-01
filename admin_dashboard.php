@@ -65,136 +65,147 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <style>
-        /* Basic reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+               
+               * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212; /* Background hitam sesuai tema */
+    color: #f0f0f0; /* Teks terang */
+    line-height: 1.6;
+}
 
-        header {
-            background-color: #333;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+/* Header */
+header {
+    background-color: #1e1e1e; /* Warna lebih gelap untuk header */
+    color: #f0f0f0; /* Teks terang */
+    padding: 30px 0;
+    text-align: center;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
 
-        nav {
-            background-color: #444;
-            padding: 15px 0;
-            margin-bottom: 20px;
-        }
+header h1 {
+    font-size: 2.5rem;
+}
 
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            text-align: center;
-        }
+/* Navigation */
+nav {
+    background-color: #1e1e1e; /* Warna gelap untuk navigasi */
+    padding: 15px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
 
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
 
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
+nav ul li {
+    margin: 0 20px;
+}
 
-        nav ul li a:hover {
-            text-decoration: underline;
-        }
+nav ul li a {
+    color: #ff9800; /* Warna oranye untuk teks link */
+    font-family: 'Press Start 2P', cursive; /* Gaya font pixelated */
+    text-decoration: none;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
 
-        h1, h2 {
-            color: #444;
-            text-align: center;
-            margin-bottom: 15px;
-        }
+nav ul li a:hover {
+    background-color: #2a2a2a; /* Warna hover yang lebih gelap */
+    border-radius: 5px;
+}
 
-        table {
-            width: 90%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            background-color: white;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        }
+/* Main Content */
+main {
+    padding: 30px 0;
+}
 
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
+h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #ff9800; /* Warna oranye untuk heading */
+}
 
-        th {
-            background-color: #f4f4f4;
-            color: #333;
-        }
+/* Table Styling */
+table {
+    width: 90%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: #1e1e1e; /* Background tabel gelap */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    border-radius: 8px;
+}
 
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #444; /* Garis tabel */
+}
 
-        tr:hover {
-            background-color: #f1f1f1;
-        }
+th {
+    background-color: #2a2a2a; /* Warna lebih gelap untuk header tabel */
+    color: #ff9800; /* Teks oranye */
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
 
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
+td {
+    color: #f0f0f0; /* Teks terang */
+}
 
-        a:hover {
-            text-decoration: underline;
-        }
+tr:hover {
+    background-color: #2e2e2e; /* Warna saat baris di-hover */
+}
 
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            margin: 5px;
-            font-weight: bold;
-            text-align: center;
-        }
+tr:nth-child(even) {
+    background-color: #2a2a2a; /* Background selang-seling */
+}
 
-        .btn:hover {
-            background-color: #0056b3;
-        }
+/* Game Image */
+.game-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    object-fit: cover;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
 
-        .btn-danger {
-            background-color: red;
-        }
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff9800; /* Tombol oranye */
+    color: #121212; /* Teks hitam */
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
 
-        .btn-danger:hover {
-            background-color: #cc0000;
-        }
+.btn:hover {
+    background-color: #e68900; /* Warna hover */
+}
 
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
+.btn-danger {
+    background-color: red;
+}
 
-        .game-image {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-        }
+.btn-danger:hover {
+    background-color: #cc0000;
+}
+
+
     </style>
 </head>
 <body>
@@ -205,10 +216,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <nav>
     <ul>
-        <li><a href="add_game.php">Add New Game</a></li>
-        <li><a href="verify_payments.php">Verify Payments</a></li>
-        <li><a href="transaction_history.php">Transaction History</a></li>
-        <li><a href="discount_event.php">Create Discount Event</a></li>
+        <li><a href="add_game.php" class="btn">Add New Game</a></li>
+        <li><a href="verify_payments.php" class="btn">Verify Payments</a></li>
+        <li><a href="transaction_history_admin.php" class="btn">Transaction History</a></li>
+        <li><a href="discount_event.php" class="btn">Create Discount Event</a></li>
+        <li><a href="login.php" class="btn">Log Out</a></li>
     </ul>
 </nav>
 
@@ -241,53 +253,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </tr>
         <?php } ?>
     </table>
-
-    <h2>Pending Payments</h2>
-    <table>
-        <tr>
-            <th>Payment ID</th>
-            <th>User ID</th>
-            <th>Amount</th>
-            <th>Payment Method</th>
-            <th>Actions</th>
-        </tr>
-        <?php while ($payment = $payments_result->fetch_assoc()) { ?>
-            <tr>
-                <td><?php echo $payment['id']; ?></td>
-                <td><?php echo $payment['user_id']; ?></td>
-                <td><?php echo $payment['amount']; ?></td>
-                <td><?php echo $payment['payment_method']; ?></td>
-                <td>
-                    <a href="verify_payment_action.php?id=<?php echo $payment['id']; ?>" class="btn">Verify</a>
-                </td>
-            </tr>
-        <?php } ?>
-    </table>
-
-    <h2>Transaction History</h2>
-    <table>
-        <tr>
-            <th>Transaction ID</th>
-            <th>User ID</th>
-            <th>Game ID</th>
-            <th>Amount</th>
-            <th>Payment Date</th>
-        </tr>
-        <?php while ($transaction = $transactions_result->fetch_assoc()) { ?>
-            <tr>
-                <td><?php echo $transaction['id']; ?></td>
-                <td><?php echo $transaction['user_id']; ?></td>
-                <td><?php echo $transaction['game_id']; ?></td>
-                <td><?php echo $transaction['amount']; ?></td>
-                <td><?php echo $transaction['transaction_date']; ?></td>
-            </tr>
-        <?php } ?>
-    </table>
 </main>
-
-<footer>
-    <a href="login.php" class="btn">Log Out</a>
-</footer>
-
 </body>
 </html>
