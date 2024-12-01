@@ -7,14 +7,12 @@ if (!isset($_SESSION['user_id'])) {
 ?>
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Pengguna</title>
-<<<<<<< HEAD
     <link rel="stylesheet" href="dashboard.css">
-=======
-    <link rel="stylesheet" href="styles.css">
     <style>
         /* Gaya tata letak */
         body {
@@ -38,20 +36,28 @@ if (!isset($_SESSION['user_id'])) {
 
         /* Gaya untuk tabel */
         table {
-            width: 50%; /* Lebar tabel lebih kecil */
-            margin: 0 auto; /* Tabel berada di tengah */
+            width: 50%;
+            /* Lebar tabel lebih kecil */
+            margin: 0 auto;
+            /* Tabel berada di tengah */
             border-collapse: collapse;
             position: relative;
-            z-index: 2; /* Tabel berada di atas form box */
-            background: white; /* Pastikan tabel tetap putih */
-            color: black; /* Teks tabel terlihat jelas */
+            z-index: 2;
+            /* Tabel berada di atas form box */
+            background: white;
+            /* Pastikan tabel tetap putih */
+            color: black;
+            /* Teks tabel terlihat jelas */
         }
 
-        table, th, td {
+        table,
+        th,
+        td {
             border: 1px solid #ddd;
         }
 
-        th, td {
+        th,
+        td {
             padding: 10px;
             text-align: left;
         }
@@ -66,34 +72,47 @@ if (!isset($_SESSION['user_id'])) {
             top: 10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 52%; 
+            width: 52%;
             padding: 10px;
             border: 1px solid #ddd;
-            background-color: rgba(255, 255, 255, 0.8); /* Transparan tapi cukup jelas */
-            z-index: 1; /* Form box berada di bawah tabel */
+            background-color: rgba(255, 255, 255, 0.8);
+            /* Transparan tapi cukup jelas */
+            z-index: 1;
+            /* Form box berada di bawah tabel */
             box-sizing: border-box;
         }
+        .qwe{
+            color : black;
+        }
     </style>
->>>>>>> 960f3a6f7bbb7dcd46acae7d1a37945b51f7d68f
+
 </head>
+
 <body>
     <header>
         <h1>Selamat Datang, <?php echo $_SESSION['username']; ?></h1>
         <nav>
             <ul>
-                <button type="submit"><li><a href="game_list.php">Lihat Daftar Game</a></li></button>
-                <button type="submit"><li><a href="transaction_history.php">Lihat Histori Transaksi</a></li></button>
-                <button type="submit"><li><a href="buy_game.php">Beli Game</a></li></button>
-                <button type="submit"><li><a href="logout.php">Logout</a></li></button>
+                <button type="submit">
+                    <li><a href="game_list.php">Lihat Daftar Game</a></li>
+                </button>
+                <button type="submit">
+                    <li><a href="transaction_history.php">Lihat Histori Transaksi</a></li>
+                </button>
+                <button type="submit">
+                    <li><a href="buy_game.php">Beli Game</a></li>
+                </button>
+                <button type="submit">
+                    <li><a href="logout.php">Logout</a></li>
+                </button>
             </ul>
         </nav>
     </header>
-    
+
     <main>
         <h2>Dashboard Pengguna</h2>
         <p>Selamat Datang di Dasboard Anda. Silakan pilih opsi di atas untuk melanjutkan.</p>
-        
-<<<<<<< HEAD
+
         <!-- Menampilkan histori transaksi jika ada -->
         <h3>Riwayat Transaksi Terakhir</h3>
         <?php
@@ -105,7 +124,7 @@ if (!isset($_SESSION['user_id'])) {
         $stmt->bind_param("i", $user_id);
         $stmt->execute();
         $result = $stmt->get_result();
-        
+
         if ($transaction = $result->fetch_assoc()) {
             // Menampilkan data transaksi terbaru
             echo "<p><strong>ID Transaksi:</strong> " . $transaction['id'] . "</p>";
@@ -117,7 +136,6 @@ if (!isset($_SESSION['user_id'])) {
             echo "<p>Anda belum melakukan transaksi apapun.</p>";
         }
         ?>
-=======
         <div class="container">
             <!-- Form box untuk tampilan lebih rapi -->
             <div class="form-box">
@@ -130,7 +148,7 @@ if (!isset($_SESSION['user_id'])) {
                 $stmt->bind_param("i", $user_id);
                 $stmt->execute();
                 $result = $stmt->get_result();
-                
+
                 if ($transaction = $result->fetch_assoc()) {
                     echo "<table>";
                     echo "<tr><th>ID Transaksi</th><td>" . $transaction['id'] . "</td></tr>";
@@ -145,7 +163,7 @@ if (!isset($_SESSION['user_id'])) {
             </div>
 
         </div>
->>>>>>> 960f3a6f7bbb7dcd46acae7d1a37945b51f7d68f
     </main>
 </body>
+
 </html>

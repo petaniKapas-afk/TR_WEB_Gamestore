@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['payment_method'])) {
 
             <div class="button-group">
                 <button type="submit">Lanjutkan ke Pembayaran</button>
-                <a href="javascript:history.back()" class="cancel-button">Batal</a>
+                <a href="dashboard.php" class="cancel-button">Batal</a>
             </div>
         </form>
     </div>
