@@ -205,6 +205,27 @@ tr:nth-child(even) {
     background-color: #cc0000;
 }
 
+.btn-out {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #444; /* Warna latar belakang berbeda */
+    color: #f0f0f0; /* Warna teks terang */
+    text-decoration: none;
+    border: 2px solid #ff9800; /* Border oranye */
+    border-radius: 5px;
+    margin: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    text-align: center;
+}
+
+.btn-out:hover {
+    background-color: #ff9800; /* Warna hover oranye */
+    color: #121212; /* Teks hitam saat hover */
+    border-color: #e68900; /* Warna border saat hover */
+}
+
+
 
     </style>
 </head>
@@ -220,7 +241,7 @@ tr:nth-child(even) {
         <li><a href="verify_payments.php" class="btn">Verify Payments</a></li>
         <li><a href="transaction_history_admin.php" class="btn">Transaction History</a></li>
         <li><a href="discount_event.php" class="btn">Create Discount Event</a></li>
-        <li><a href="login.php" class="btn">Log Out</a></li>
+        <li><a href="login.php" class="btn-out">Log Out</a></li>
     </ul>
 </nav>
 
@@ -228,17 +249,19 @@ tr:nth-child(even) {
     <h2>Game List</h2>
     <table>
         <tr>
-            <th>Game ID</th>
-            <th>Game Title</th>
-            <th>Price</th>
-            <th>Image</th>
-            <th>Actions</th>
+            <th> Id </th>
+            <th> Judul </th>
+            <th> Harga </th>
+            <th> Stok </th>
+            <th> Gambar </th>
+            <th> Aksi </th>
         </tr>
         <?php while ($game = $games_result->fetch_assoc()) { ?>
             <tr>
                 <td><?php echo $game['id']; ?></td>
                 <td><?php echo $game['title']; ?></td>
                 <td><?php echo $game['price']; ?></td>
+                <td><?php echo $game['stock']; ?></td>
                 <td>
                     <?php if ($game['image']) { ?>
                         <img src="uploads/<?php echo $game['image']; ?>" alt="Game Image" class="game-image">

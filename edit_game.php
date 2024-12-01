@@ -75,57 +75,80 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     <title>Edit Game</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            background-color: #121212; /* Latar belakang gelap */
+            color: #f0f0f0; /* Teks terang */
             margin: 20px;
             padding: 20px;
-            background-color: #f4f4f4;
         }
 
         h1 {
             text-align: center;
+            color: #ff9800; /* Warna oranye untuk judul */
+            font-family: 'Press Start 2P', cursive; /* Font pixelated */
         }
 
         form {
             max-width: 500px;
             margin: 0 auto;
-            background: #fff;
+            background: #1e1e1e; /* Form dengan latar belakang lebih gelap */
             padding: 20px;
             border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
 
         label {
             display: block;
             margin-bottom: 10px;
             font-weight: bold;
+            color: #ff9800; /* Warna label oranye */
         }
 
         input, textarea, button {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
-            border: 1px solid #ccc;
+            border: 1px solid #333; /* Border lebih gelap */
             border-radius: 4px;
             font-size: 14px;
+            background-color: #2a2a2a; /* Latar input lebih gelap */
+            color: #f0f0f0; /* Teks terang */
+        }
+
+        textarea {
+            resize: vertical;
         }
 
         button {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #ff9800; /* Tombol oranye */
+            color: #121212; /* Teks hitam pada tombol */
             border: none;
             cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #e68900; /* Warna hover tombol */
+            transform: scale(1.05);
         }
 
         .cancel-btn {
-            background-color: #f44336;
+            background-color: #f44336; /* Tombol batal merah */
         }
 
         .cancel-btn:hover {
             background-color: #e53935;
+        }
+
+        img {
+            display: block;
+            margin: 10px auto;
+            max-width: 100%;
+            height: auto;
+        }
+
+        a {
+            text-decoration: none;
         }
     </style>
 </head>
@@ -149,7 +172,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         
         <?php if ($game['image']) { ?>
             <p>Gambar Saat Ini:</p>
-            <img src="uploads/<?php echo $game['image']; ?>" alt="Game Image" width="100">
+            <img src="uploads/<?php echo $game['image']; ?>" alt="Game Image">
         <?php } ?>
 
         <button type="submit">Perbarui Game</button>

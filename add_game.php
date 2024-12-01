@@ -1,3 +1,69 @@
+<?php
+session_start();
+require 'koneksi.php';
+
+// Pastikan admin sudah login
+if (!isset($_SESSION['admin_id'])) {
+    header('Location: login.php');
+    exit();
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Periksa apakah data form sudah ada
+    if (isset($_POST['title'], $_POST['price'], $_POST['description'], $_POST['stock'], $_FILES['image'])) {
+        $title = $_POST['title'];
+        $price = $_POST['price'];
+        $description = $_POST['description'];
+        $stock = $_POST['stock'];
+
+        // Proses upload gambar
+        $image = $_FILES['image'];
+        $image_name = $image['name'];
+        $image_tmp_name = $image['tmp_name'];
+        $image_error = $image['error'];
+
+        if ($image_error === 0) {
+            // Tentukan direktori untuk menyimpan gambar
+            $upload_dir = 'uploads/';
+            $image_ext = pathinfo($image_name, PATHINFO_EXTENSION);
+            $image_new_name = uniqid('', true) . '.' . $image_ext;
+            $image_path = $upload_dir . $image_new_name;
+
+            // Pindahkan gambar ke direktori yang ditentukan
+            if (move_uploaded_file($image_tmp_name, $image_path)) {
+                // Query untuk menambah game baru
+                $insert_query = "INSERT INTO games (title, description, price, stock, image) VALUES (?, ?, ?, ?, ?)";
+                $stmt = $conn->prepare($insert_query);
+
+                // Periksa apakah prepare berhasil
+                if ($stmt === false) {
+                    die('MySQL prepare error: ' . $conn->error);
+                }
+
+                // Bind parameter dan simpan nama file gambar
+                $stmt->bind_param("ssdis", $title, $description, $price, $stock, $image_new_name);
+
+                if ($stmt->execute()) {
+                    echo "<script>alert('Game berhasil ditambahkan!'); window.location.href='admin_dashboard.php';</script>";
+                } else {
+                    echo "<script>alert('Error saat menambahkan game: " . $stmt->error . "'); window.history.back();</script>";
+                }
+            } else {
+                echo "<script>alert('Error uploading image!'); window.history.back();</script>";
+            }
+        } else {
+            echo "<script>alert('Error with image upload!'); window.history.back();</script>";
+        }
+    } else {
+        echo "<script>alert('Missing game information!'); window.history.back();</script>";
+    }
+}
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
