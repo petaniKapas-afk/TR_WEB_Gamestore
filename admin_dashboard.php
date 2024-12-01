@@ -65,6 +65,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f4f7f6;
@@ -82,7 +89,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         nav {
             background-color: #444;
-            padding: 10px;
+            padding: 15px 0;
+            margin-bottom: 20px;
         }
 
         nav ul {
@@ -108,6 +116,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         h1, h2 {
             color: #444;
+            text-align: center;
+            margin-bottom: 15px;
         }
 
         table {
@@ -126,6 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         th {
             background-color: #f4f4f4;
+            color: #333;
         }
 
         tr:nth-child(even) {
@@ -152,11 +163,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             color: white;
             text-decoration: none;
             border-radius: 5px;
-            margin: 10px 0;
+            margin: 5px;
+            font-weight: bold;
+            text-align: center;
         }
 
         .btn:hover {
             background-color: #0056b3;
+        }
+
+        .btn-danger {
+            background-color: red;
+        }
+
+        .btn-danger:hover {
+            background-color: #cc0000;
         }
 
         footer {
@@ -167,6 +188,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             position: fixed;
             width: 100%;
             bottom: 0;
+        }
+
+        .game-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
         }
     </style>
 </head>
@@ -202,14 +229,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <td><?php echo $game['price']; ?></td>
                 <td>
                     <?php if ($game['image']) { ?>
-                        <img src="uploads/<?php echo $game['image']; ?>" alt="Game Image" width="100">
+                        <img src="uploads/<?php echo $game['image']; ?>" alt="Game Image" class="game-image">
                     <?php } else { ?>
                         No image available
                     <?php } ?>
                 </td>
                 <td>
                     <a href="edit_game.php?id=<?php echo $game['id']; ?>" class="btn">Edit</a>
-                    <a href="delete_game.php?id=<?php echo $game['id']; ?>" class="btn" style="background-color: red;">Delete</a>
+                    <a href="delete_game.php?id=<?php echo $game['id']; ?>" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         <?php } ?>
