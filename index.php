@@ -12,8 +12,9 @@
            <div class="overlay">
                <h1 class="pixelated-font">Welcome to Gamestore</h1>
                <div class="auth-links">
-                   <a href="login.php">Login</a>
-                   <a href="daftar.php">Register</a>
+                <button type="Submit"><a href="login.php">Login</a></button>
+                <button type="Submit"><a href="daftar.php">Register</a></button>
+               </div>
            </div>
        </header>
 
