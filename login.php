@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <form method="POST" action="">
-        <h2>Login</h2>
+        <h2 style="text-align:center;">Login</h2>
         <label for="username">Username</label>
         <input type="text" name="username" placeholder="Username" required>
         
@@ -72,10 +72,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <option value="admin">Admin</option>
         </select>
 
-        <button type="submit">Login</button>
-        <p>Don't have an account? <a href="daftar.php">Register as a User</a></p>
+        <button type="submit" style="display: block; margin: 0.5rem auto; width:80px;">Login</button>
+
+        <p style="text-align:center;">Don't have an account? <a href="daftar.php">Register as a User</a></p>
 
     </form>
-    <p style="text-align:center;">Don't have an account? <a href="daftar.php">Register as a User</a></p>
 </body>
 </html>
