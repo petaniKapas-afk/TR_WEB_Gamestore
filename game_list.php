@@ -16,13 +16,16 @@ $result = $stmt->get_result();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GameList</title>
+    <title>Game Store</title>
     <link rel="stylesheet" href="game_list.css">
 </head>
 
 <body>
     <div id="game-list" class="game-list">
-        <a href="javascript:history.back()" class="back-button">← Back</a>
+        <div class="header">
+            <a href="dashboard.php" class="back-button">← Back</a>
+            <h1 class="page-title">Game Store</h1>
+        </div>
 
         <form method="GET" action="">
             <input type="text" name="search" placeholder="Search games..."
@@ -34,18 +37,15 @@ $result = $stmt->get_result();
             <?php while ($game = $result->fetch_assoc()): ?>
                 <div class="game-item">
                     <a href="game_detail.php?id=<?php echo $game['id']; ?>">
-                        <img src=>
                         <div class="game-info">
                             <div class="game-title"><?php echo htmlspecialchars($game['title']); ?></div>
-                            <div class="game-price">$<?php echo number_format($game['price'], 2); ?></div>
+                            <div class="game-price">Rp <?php echo number_format($game['price'], 2); ?></div>
                         </div>
                     </a>
                 </div>
             <?php endwhile; ?>
         </div>
     </div>
-
 </body>
-
 
 </html>

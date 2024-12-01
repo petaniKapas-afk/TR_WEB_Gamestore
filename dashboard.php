@@ -11,6 +11,9 @@ if (!isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Pengguna</title>
+<<<<<<< HEAD
+    <link rel="stylesheet" href="dashboard.css">
+=======
     <link rel="stylesheet" href="styles.css">
     <style>
         /* Gaya tata letak */
@@ -71,6 +74,7 @@ if (!isset($_SESSION['user_id'])) {
             box-sizing: border-box;
         }
     </style>
+>>>>>>> 960f3a6f7bbb7dcd46acae7d1a37945b51f7d68f
 </head>
 <body>
     <header>
@@ -89,6 +93,31 @@ if (!isset($_SESSION['user_id'])) {
         <h2>Dashboard Pengguna</h2>
         <p>Selamat Datang di Dasboard Anda. Silakan pilih opsi di atas untuk melanjutkan.</p>
         
+<<<<<<< HEAD
+        <!-- Menampilkan histori transaksi jika ada -->
+        <h3>Riwayat Transaksi Terakhir</h3>
+        <?php
+        // Mengambil data transaksi terbaru pengguna
+        require 'koneksi.php';
+        $user_id = $_SESSION['user_id'];
+        $query = "SELECT * FROM transactions WHERE user_id = ? ORDER BY transaction_date DESC LIMIT 1";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($transaction = $result->fetch_assoc()) {
+            // Menampilkan data transaksi terbaru
+            echo "<p><strong>ID Transaksi:</strong> " . $transaction['id'] . "</p>";
+            echo "<p><strong>Metode Pembayaran:</strong> " . $transaction['payment_method'] . "</p>";
+            echo "<p><strong>Total Pembayaran:</strong> Rp " . number_format($transaction['total_amount'], 0, ',', '.') . "</p>";
+            echo "<p><strong>Tanggal Transaksi:</strong> " . $transaction['transaction_date'] . "</p>";
+            echo "<p><strong>Status:</strong> " . $transaction['status'] . "</p>";
+        } else {
+            echo "<p>Anda belum melakukan transaksi apapun.</p>";
+        }
+        ?>
+=======
         <div class="container">
             <!-- Form box untuk tampilan lebih rapi -->
             <div class="form-box">
@@ -116,6 +145,7 @@ if (!isset($_SESSION['user_id'])) {
             </div>
 
         </div>
+>>>>>>> 960f3a6f7bbb7dcd46acae7d1a37945b51f7d68f
     </main>
 </body>
 </html>

@@ -32,12 +32,20 @@ if (isset($_POST['confirm'])) {
     $stmt_update->bind_param("ii", $user_id, $game_ids_str);
     $stmt_update->execute();
 
-    // Menampilkan struk
-    echo "<h1>Struk Pembelian</h1>";
-    echo "Games: " . implode(", ", $games) . "<br>";
-    echo "Metode Pembayaran: $payment_method<br>";
-    echo "Total Pembayaran: Rp " . number_format($total_amount, 0, ',', '.') . "<br>";
-    echo "<a href='dashboard.php'>Kembali ke Dashboard</a>";
+    // Menampilkan struk pembelian
+    echo "<link rel='stylesheet' href='confirmation.css'>
+    <div class='container'>
+            <h1>Struk Pembelian</h1>
+            <div class='receipt'>
+                <p><strong>Games:</strong> " . implode(", ", $games) . "</p>
+                <p><strong>Metode Pembayaran:</strong> $payment_method</p>
+                <p><strong>Total Pembayaran:</strong> Rp " . number_format($total_amount, 0, ',', '.') . "</p>
+                <div class='button-container'>
+                    <a href='dashboard.php' class='back-button'>Kembali ke Dashboard</a>
+                </div>
+            </div>
+          </div>";
+
     unset($_SESSION['games']); // Hapus data session pembelian
     exit();
 } elseif (isset($_POST['cancel'])) {
@@ -49,21 +57,30 @@ if (isset($_POST['confirm'])) {
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Konfirmasi Pembelian</title>
+    <link rel="stylesheet" href="confirmation.css">
 </head>
-<body>
-    <h1>Konfirmasi Pembelian</h1>
-    <p>Apakah Anda yakin ingin melanjutkan pembelian?</p>
-    <p>Games: <?php echo implode(", ", $games); ?></p>
-    <p>Metode Pembayaran: <?php echo $payment_method; ?></p>
-    <p>Total Pembayaran: Rp <?php echo number_format($total_amount, 0, ',', '.'); ?></p>
 
-    <form method="POST" action="confirmation.php">
-        <button type="submit" name="confirm">Ya, Lanjutkan Pembelian</button>
-        <button type="submit" name="cancel">Batal</button>
-    </form>
+<body>
+    <div class="container">
+        <h1 style="text-align:center;">Konfirmasi Pembelian</h1>
+        <p style="text-align:center;">Apakah Anda yakin ingin melanjutkan pembelian?</p>
+
+        <div class="confirmation-list">
+            <p><strong>Games:</strong> <?php echo implode(", ", $games); ?></p>
+            <p><strong>Metode Pembayaran:</strong> <?php echo $payment_method; ?></p>
+            <p><strong>Total Pembayaran:</strong> Rp <?php echo number_format($total_amount, 0, ',', '.'); ?></p>
+        </div>
+
+        <form method="POST" action="confirmation.php">
+            <button type="submit" name="confirm">Ya, Lanjutkan Pembelian</button>
+            <button type="submit" name="cancel">Batal</button>
+        </form>
+    </div>
 </body>
+
 </html>
