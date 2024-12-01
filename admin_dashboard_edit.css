@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1f1c2c, #928dab);
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    text-align: center;
+    padding: 50px 0;
+    background: rgba(0,0,0,0.5);
+}
+
+.header h1 {
+    font-size: 48px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.nav-bar {
+    background: rgba(0,0,0,0.7);
+    padding: 10px 0;
+}
+
+.nav-bar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.nav-bar ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.nav-bar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+
+.nav-bar ul li a:hover {
+    color: #ffdf00;
+}
+
+.form-container {
+    max-width: 800px;
+    margin: 30px auto;
+    background: rgba(255,255,255,0.1);
+    padding: 30px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.edit-discount-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.form-group {
+    width: 48%;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="datetime-local"],
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+    font-size: 16px;
+}
+
+.form-group input::placeholder {
+    color: #ccc;
+}
+
+.select-games {
+    width: 100%;
+}
+
+.game-checkboxes {
+    max-height: 200px;
+    overflow-y: auto;
+    background: rgba(0,0,0,0.2);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.game-option {
+    margin-bottom: 10px;
+}
+
+.game-option label {
+    margin-left: 10px;
+    font-weight: 300;
+}
+
+.form-buttons {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 15px 30px;
+    margin: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+    background: #ff6a00;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+    background: #e65c00;
+    transform: translateY(-2px);
+}
+
+.submit-btn {
+    background: #00c851;
+}
+
+.submit-btn:hover {
+    background: #007e33;
+}
+
+.delete-btn {
+    background: #ff4444;
+}
+
+.delete-btn:hover {
+    background: #cc0000;
+}
+
+@media (max-width: 768px) {
+    .form-group {
+        width: 100%;
+    }
+
+    .btn {
+        width: 80%;
+        margin: 10px auto;
+    }
+}

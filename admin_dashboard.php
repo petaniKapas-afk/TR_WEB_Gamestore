@@ -78,6 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             color: #333;
             margin: 0;
             padding: 0;
+            margin-bottom: 100px;
         }
 
         header {
@@ -282,6 +283,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <td><?php echo $transaction['transaction_date']; ?></td>
             </tr>
         <?php } ?>
+    </table>
+    <h2>Active Discount Events</h2>
+    <table>
+        <tr>
+            <th>Event Name</th>
+            <th>Discount Type</th>
+            <th>Discount Value</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Actions</th>
+        </tr>
+        <?php
+        $current_time = date('Y-m-d H:i:s');
+        $events_result = $conn->query("SELECT * FROM discount_events WHERE end_date > '$current_time' ORDER BY start_date ASC");
+        while ($event = $events_result->fetch_assoc()) {
+            echo '<tr>';
+            echo '<td>' . htmlspecialchars($event['event_name']) . '</td>';
+            echo '<td>' . ucfirst($event['discount_type']) . '</td>';
+            echo '<td>' . $event['discount_value'] . '</td>';
+            echo '<td>' . $event['start_date'] . '</td>';
+            echo '<td>' . $event['end_date'] . '</td>';
+            echo '<td><a href="edit_discount_event.php?id=' . $event['id'] . '" class="btn">Edit</a></td>';
+            echo '</tr>';
+        }
+        ?>
     </table>
 </main>
 

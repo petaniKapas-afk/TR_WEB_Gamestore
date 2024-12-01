@@ -1,3 +1,5 @@
+/* game_list.css */
+
 body {
   font-family: Arial, sans-serif;
   background-color: #121212;
@@ -6,7 +8,6 @@ body {
   padding: 0;
 }
 
-/* Header Styling */
 .header {
   align-items: center;
   justify-content: space-between;
@@ -125,4 +126,15 @@ body {
 .game-item a {
   text-decoration: none;
   color: inherit;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #888;
+  margin-right: 5px;
+}
+
+.discount-price {
+  color: #e53935;
+  font-weight: bold;
 }
