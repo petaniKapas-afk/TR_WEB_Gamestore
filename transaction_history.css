@@ -1,0 +1,89 @@
+ /* Basic reset */
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212; /* Background hitam */
+    color: #f0f0f0; /* Teks terang */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #1e1e1e; /* Header lebih gelap */
+    color: #ff9800; /* Teks oranye */
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+    color: #ff9800; /* Warna oranye untuk judul */
+    text-align: center;
+    margin-bottom: 15px;
+    font-family: 'Press Start 2P', cursive; /* Font pixelated */
+}
+
+table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #1e1e1e; /* Background tabel lebih gelap */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #333; /* Border lebih gelap */
+}
+
+th {
+    background-color: #2a2a2a; /* Warna header tabel */
+    color: #ff9800; /* Teks oranye di tabel */
+}
+
+td {
+    color: #f0f0f0; /* Teks terang */
+}
+
+tr:nth-child(even) {
+    background-color: #1b1b1b; /* Baris genap sedikit lebih gelap */
+}
+
+tr:hover {
+    background-color: #2a2a2a; /* Warna saat hover */
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff9800; /* Tombol oranye */
+    color: #121212; /* Teks hitam */
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 5px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #e68900; /* Warna hover tombol */
+    transform: scale(1.05);
+}
+
+footer {
+    background-color: #1e1e1e; /* Footer lebih gelap */
+    color: #ff9800; /* Teks oranye */
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.3);
+}
