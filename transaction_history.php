@@ -31,12 +31,10 @@ $result = $stmt->get_result();
     <link rel="stylesheet" href="transaction_history.css">
 </head>
 <body>
+    <header>
+        <h1>Transaction History</h1>
+    </header>
     <div class="container">
-        <div class="header">
-            <a href="javascript:history.back()" class="back-button">← back</a>
-            <h1>Riwayat Transaksi</h1>
-        </div>
-
         <table>
             <thead>
                 <tr>
@@ -62,5 +60,8 @@ $result = $stmt->get_result();
             </tbody>
         </table>
     </div>
+    <footer>
+    <a href="dashboard.php" class="btn">Back to Dashboard</a>
+    </footer>
 </body>
 </html>
