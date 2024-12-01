@@ -1,4 +1,5 @@
-/* Global Styles */
+/* game_detail.css */
+
 body {
     font-family: 'Arial', sans-serif;
     background-color: #121212;
@@ -31,7 +32,6 @@ h3 {
     text-align: center;
 }
 
-/* Game Details */
 .game-info {
     margin-top: 2rem;
 }
@@ -67,4 +67,15 @@ h3 {
 
 .back-button:hover {
     background-color: #e68900;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: #888;
+    margin-right: 5px;
+}
+
+.discount-price {
+    color: #e53935;
+    font-weight: bold;
 }
