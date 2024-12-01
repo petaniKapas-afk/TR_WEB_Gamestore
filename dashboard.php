@@ -11,10 +11,7 @@ if (!isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Pengguna</title>
-<<<<<<< HEAD
     <link rel="stylesheet" href="dashboard.css">
-=======
-    <link rel="stylesheet" href="styles.css">
     <style>
         /* Gaya tata letak */
         body {
@@ -74,7 +71,6 @@ if (!isset($_SESSION['user_id'])) {
             box-sizing: border-box;
         }
     </style>
->>>>>>> 960f3a6f7bbb7dcd46acae7d1a37945b51f7d68f
 </head>
 <body>
     <header>
@@ -92,8 +88,6 @@ if (!isset($_SESSION['user_id'])) {
     <main>
         <h2>Dashboard Pengguna</h2>
         <p>Selamat Datang di Dasboard Anda. Silakan pilih opsi di atas untuk melanjutkan.</p>
-        
-<<<<<<< HEAD
         <!-- Menampilkan histori transaksi jika ada -->
         <h3>Riwayat Transaksi Terakhir</h3>
         <?php
@@ -117,7 +111,6 @@ if (!isset($_SESSION['user_id'])) {
             echo "<p>Anda belum melakukan transaksi apapun.</p>";
         }
         ?>
-=======
         <div class="container">
             <!-- Form box untuk tampilan lebih rapi -->
             <div class="form-box">
@@ -145,7 +138,6 @@ if (!isset($_SESSION['user_id'])) {
             </div>
 
         </div>
->>>>>>> 960f3a6f7bbb7dcd46acae7d1a37945b51f7d68f
     </main>
 </body>
 </html>
