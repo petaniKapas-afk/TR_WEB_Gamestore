@@ -111,8 +111,6 @@ body {
   height: 250px;
   object-fit: fit; /* Menampilkan seluruh gambar tanpa memotong */
   background-color: #000; /* Tambahkan latar belakang hitam untuk gambar */
-  padding: 10px; /* Beri ruang antara gambar dan border */
-  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .game-item:hover img {
@@ -133,6 +131,11 @@ body {
   margin: 0.5rem 0;
   color: #f0f0f0;
   text-transform: uppercase;
+  text-decoration: none;
+}
+
+.game-item .game-title:hover {
+  text-decoration: none;
 }
 
 .game-item .game-price {
@@ -140,6 +143,11 @@ body {
   color: #ff9800;
   font-weight: bold;
   margin-top: 0.5rem;
+  text-decoration: none;
+}
+
+.game-item .game-price:hover {
+  text-decoration: none;
 }
 
 /* Harga asli dengan garis coret */
@@ -156,8 +164,11 @@ body {
   font-size: 18px;
 }
 
-
 .game-item a {
   text-decoration: none;
   color: inherit;
+}
+
+.game-item a:hover {
+  text-decoration: none; /* Hilangkan underline saat hover */
 }
