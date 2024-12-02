@@ -94,6 +94,14 @@ if (isset($_GET['id'])) {
     <div class="container">
         <h1><?php echo htmlspecialchars($game['title']); ?></h1>
 
+        <!-- Gambar Game -->
+        <div class="game-image">
+            <div class="image-wrapper">
+                <img src="uploads/<?php echo htmlspecialchars($game['image']); ?>" alt="<?php echo htmlspecialchars($game['title']); ?>">
+            </div>
+        </div>
+
+        <!-- Informasi Game -->
         <div class="game-info">
             <h3>Detail Game</h3>
             <?php
@@ -109,6 +117,7 @@ if (isset($_GET['id'])) {
             <p><strong>Stok:</strong> <?php echo htmlspecialchars($game['stock']); ?></p>
         </div>
 
+        <!-- Tombol -->
         <div class="button-container">
             <a href="javascript:history.back()" class="back-button">Kembali</a>
             <a href="buy_game.php?id=<?php echo $game['id']; ?>" class="buy-button">Beli Sekarang</a>
@@ -117,3 +126,5 @@ if (isset($_GET['id'])) {
 </body>
 
 </html>
+
+

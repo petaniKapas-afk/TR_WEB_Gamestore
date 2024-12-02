@@ -1,58 +1,159 @@
 /* game_detail.css */
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #121212;
-    color: #f0f0f0;
-    margin: 0;
-    padding: 0;
+  font-family: "Arial", sans-serif;
+  background-color: #121212;
+  color: #f0f0f0;
+  margin: 0;
+  padding: 0;
 }
 
 .container {
-    max-width: 900px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: #1e1e1e;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 h1 {
-    font-size: 42px;
-    font-weight: bold;
-    color: #ff9800;
-    text-align: center;
-    margin-bottom: 1rem;
+  font-size: 42px;
+  font-weight: bold;
+  color: #ff9800;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 h3 {
-    font-size: 24px;
-    color: #ff9800;
-    margin-bottom: 1rem;
-    text-align: center;
+  font-size: 24px;
+  color: #ff9800;
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
+.game-info {
+  margin-top: 2rem;
+}
+
+.game-info p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.game-info strong {
+  color: #ff9800;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 2rem;
+}
+
+.back-button {
+  display: block;
+  background-color: #ff9800;
+  border: none;
+  border-radius: 5px;
+  padding: 0.7rem 2rem;
+  color: #121212;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.buy-button {
+  display: block;
+  background-color: #ff9800;
+  border: none;
+  border-radius: 5px;
+  padding: 0.7rem 2rem;
+  color: #121212;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.buy-button:hover {
+  background-color: #e68900;
+}
+
+.back-button:hover {
+  background-color: #e68900;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #888;
+  margin-right: 5px;
+}
+
+.discount-price {
+  color: #e53935;
+  font-weight: bold;
+}
+
+/* Gambar Game */
+.game-image {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.image-wrapper {
+    width: 100%;
+    max-width: 400px; /* Atur lebar maksimum gambar */
+    height: 300px; /* Tinggi tetap untuk gambar */
+    overflow: hidden;
+    margin: 0 auto;
+    border-radius: 15px;
+    background-color: #000; /* Latar belakang hitam untuk gambar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Memastikan gambar menutupi area tanpa distorsi */
+    transition: transform 0.3s ease;
+}
+
+.image-wrapper:hover {
+    transform: scale(1.05); /* Zoom-in efek hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* Informasi Game */
 .game-info {
     margin-top: 2rem;
 }
 
 .game-info p {
     font-size: 18px;
-    line-height: 1.6;
-    margin-bottom: 1rem;
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
 }
 
 .game-info strong {
     color: #ff9800;
 }
 
+/* Tombol */
 .button-container {
     display: flex;
     justify-content: space-evenly;
     margin-top: 2rem;
 }
 
-.back-button {
+.back-button,
+.buy-button {
     display: block;
     background-color: #ff9800;
     border: none;
@@ -63,10 +164,13 @@ h3 {
     font-weight: bold;
     cursor: pointer;
     text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.back-button:hover {
+.back-button:hover,
+.buy-button:hover {
     background-color: #e68900;
+    transform: translateY(-3px);
 }
 
 .original-price {
