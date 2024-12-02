@@ -272,7 +272,7 @@ tr:nth-child(even) {
                 </td>
                 <td>
                     <a href="edit_game.php?id=<?php echo $game['id']; ?>" class="btn">Edit</a>
-                    <a href="delete_game.php?id=<?php echo $game['id']; ?>" class="btn btn-danger">Delete</a>
+                    <a href="delete_game.php?id=<?php echo $game['id']; ?>" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')">Delete</a>
                 </td>
             </tr>
         <?php } ?>
