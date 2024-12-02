@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2024 at 01:02 PM
+-- Generation Time: Dec 02, 2024 at 01:19 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -107,21 +107,6 @@ INSERT INTO `games` (`id`, `title`, `description`, `price`, `stock`, `created_at
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payments`
---
-
-CREATE TABLE `payments` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `amount` decimal(10,2) NOT NULL,
-  `payment_method` varchar(50) NOT NULL,
-  `verified` tinyint(1) DEFAULT 0,
-  `payment_date` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `transactions`
 --
 
@@ -142,7 +127,7 @@ CREATE TABLE `transactions` (
 
 INSERT INTO `transactions` (`id`, `user_id`, `game_id`, `amount`, `payment_method`, `status`, `total_amount`, `transaction_date`) VALUES
 (1, 1, 1, 998000, 'credit_card', 'completed', 998000.00, '2024-11-28 01:00:17'),
-(2, 1, 4, 998000, 'credit_card', 'pending', 998000.00, '2024-11-28 01:00:17'),
+(2, 1, 4, 998000, 'credit_card', 'completed', 998000.00, '2024-11-28 01:00:17'),
 (3, 5, 1, 499000, 'credit_card', 'completed', 499000.00, '2024-11-28 09:33:49'),
 (4, 8, 1, 5491000, 'bank_transfer', 'completed', 5491000.00, '2024-11-28 09:44:44'),
 (5, 8, 4, 5491000, 'bank_transfer', 'completed', 5491000.00, '2024-11-28 09:44:44'),
@@ -151,7 +136,8 @@ INSERT INTO `transactions` (`id`, `user_id`, `game_id`, `amount`, `payment_metho
 (8, 8, 4, 499000, 'credit_card', 'completed', 499000.00, '2024-11-28 09:46:22'),
 (9, 9, 4, 499000, 'credit_card', 'completed', 499000.00, '2024-12-02 08:15:32'),
 (10, 9, 4, 249500, 'bank_transfer', 'completed', 249500.00, '2024-12-02 08:25:16'),
-(11, 1, 7, 149000, 'e_wallet', 'completed', 149000.00, '2024-12-02 10:40:41');
+(11, 1, 7, 149000, 'e_wallet', 'completed', 149000.00, '2024-12-02 10:40:41'),
+(12, 1, 4, 249500, 'bank_transfer', 'completed', 249500.00, '2024-12-02 12:10:52');
 
 -- --------------------------------------------------------
 
@@ -210,13 +196,6 @@ ALTER TABLE `games`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `payments`
---
-ALTER TABLE `payments`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
-
---
 -- Indexes for table `transactions`
 --
 ALTER TABLE `transactions`
@@ -253,16 +232,10 @@ ALTER TABLE `games`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `payments`
---
-ALTER TABLE `payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -279,12 +252,6 @@ ALTER TABLE `users`
 --
 ALTER TABLE `discount_event_games`
   ADD CONSTRAINT `discount_event_games_ibfk_1` FOREIGN KEY (`game_id`) REFERENCES `games` (`id`);
-
---
--- Constraints for table `payments`
---
-ALTER TABLE `payments`
-  ADD CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

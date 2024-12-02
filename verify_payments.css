@@ -1,54 +1,49 @@
- /* Basic reset */
- * {
+/* Reset styling */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #121212; /* Background hitam */
-    color: #f0f0f0; /* Teks terang */
-    margin: 0;
-    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #f0f0f0;
 }
 
 header {
-    background-color: #1e1e1e; /* Header lebih gelap */
-    color: #ff9800; /* Teks oranye */
+    background-color: #1e1e1e;
     padding: 20px;
     text-align: center;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-h2 {
-    color: #ff9800; /* Warna oranye untuk judul */
-    text-align: center;
-    margin-bottom: 15px;
-    font-family: 'Press Start 2P', cursive; /* Font pixelated */
+header h1 {
+    font-size: 32px;
+    color: #ff9800;
 }
+
 
 th, td {
-    padding: 12px;
+    padding: 15px;
     text-align: left;
-    border: 1px solid #333; /* Border lebih gelap */
+    border: 1px solid #444;
 }
 
 th {
-    background-color: #2a2a2a; /* Warna header tabel */
-    color: #ff9800; /* Teks oranye di tabel */
+    background-color: #333;
+    color: #ff9800;
 }
 
 td {
-    color: #f0f0f0; /* Teks terang */
+    background-color: #2a2a2a;
 }
 
-tr:nth-child(even) {
-    background-color: #1b1b1b; /* Baris genap sedikit lebih gelap */
+tbody tr:nth-child(even) {
+    background-color: #333;
 }
 
-tr:hover {
-    background-color: #2a2a2a; /* Warna saat hover */
+tbody tr:hover {
+    background-color: #444;
 }
 
 .btn {
@@ -68,6 +63,32 @@ tr:hover {
     background-color: #e68900; /* Warna hover tombol */
     transform: scale(1.05);
 }
+
+footer {
+    background-color: #1e1e1e; /* Footer lebih gelap */
+    color: #ff9800; /* Teks oranye */
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.3);
+}
+
+form button {
+    background-color: #ff9800;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    color: #121212;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+form button:hover {
+    background-color: #e68900;
+}
+
 
 main {
     margin-bottom: 100px; /* Memberikan jarak antara tabel dan footer */
@@ -91,3 +112,4 @@ footer {
     box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.3);
    
 }
+
