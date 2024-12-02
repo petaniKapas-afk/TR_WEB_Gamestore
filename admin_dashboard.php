@@ -15,10 +15,6 @@ $admin_id = $_SESSION['admin_id'];
 $query_games = "SELECT * FROM games";
 $games_result = $conn->query($query_games);
 
-// Query untuk mengambil daftar pembayaran yang belum diverifikasi
-$query_payments = "SELECT * FROM payments WHERE verified = 0";
-$payments_result = $conn->query($query_payments);
-
 // Query untuk mengambil riwayat transaksi semua user
 $query_transactions = "SELECT * FROM transactions";
 $transactions_result = $conn->query($query_transactions);

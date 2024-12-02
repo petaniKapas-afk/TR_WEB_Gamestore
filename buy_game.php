@@ -73,23 +73,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['payment_method'])) {
             }
         }
 
-        // Simpan transaksi
-        $status = "pending";
-        foreach ($game_ids as $game_id) {
-            $query_purchase = "INSERT INTO transactions (user_id, game_id, amount, payment_method, status, total_amount, transaction_date) 
-                               VALUES (?, ?, ?, ?, ?, ?, NOW())";
-            $stmt_purchase = $conn->prepare($query_purchase);
-            $stmt_purchase->bind_param("iiisss", $user_id, $game_id, $total_amount, $payment_method, $status, $total_amount);
-
-            if (!$stmt_purchase->execute()) {
-                echo "Error executing purchase query: " . $stmt_purchase->error;
-                exit();
-            }
-        }
-
+        // Simpan data di session
         $_SESSION['total_amount'] = $total_amount;
         $_SESSION['payment_method'] = $payment_method;
         $_SESSION['games'] = $game_ids;
+
+        // Redirect ke halaman konfirmasi
         header("Location: confirmation.php");
         exit();
     } else {
@@ -130,8 +119,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['payment_method'])) {
                     </div>
                 <?php endforeach; ?>
             </div>
-
-
 
             <h2>Pilih Metode Pembayaran</h2>
             <select name="payment_method" required>

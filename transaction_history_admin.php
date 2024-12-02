@@ -26,7 +26,7 @@ $transactions_result = $conn->query($query_transactions);
 <header>
     <h1>Transaction History</h1>
 </header>
-<main>
+<mai    n>
     <table>
         <tr>
             <th>ID Transaksi</th>
@@ -34,6 +34,7 @@ $transactions_result = $conn->query($query_transactions);
             <th>Game ID</th>
             <th>Jumlah</th>
             <th>Tanggal Pembayaran</th>
+            <th>Status</th>
         </tr>
         <?php while ($transaction = $transactions_result->fetch_assoc()) { ?>
             <tr>
@@ -42,6 +43,7 @@ $transactions_result = $conn->query($query_transactions);
                 <td><?php echo $transaction['game_id']; ?></td>
                 <td><?php echo $transaction['amount']; ?></td>
                 <td><?php echo $transaction['transaction_date']; ?></td>
+                <td><?php echo $transaction['status']; ?></td>
             </tr>
         <?php } ?>
     </table>
