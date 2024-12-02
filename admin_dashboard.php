@@ -242,7 +242,7 @@ tr:nth-child(even) {
         <li><a href="verify_payments.php" class="btn">Verify Payments</a></li>
         <li><a href="transaction_history_admin.php" class="btn">Transaction History</a></li>
         <li><a href="discount_event.php" class="btn">Create Discount Event</a></li>
-        <li><a href="login.php" class="btn-out">Log Out</a></li>
+        <li><a href="index.php" class="btn-out">Log Out</a></li>
     </ul>
 </nav>
 
