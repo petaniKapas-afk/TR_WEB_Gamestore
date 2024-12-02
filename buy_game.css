@@ -7,99 +7,115 @@ body {
 }
 
 .container {
-    max-width: 800px;
-    margin: 2rem auto;
-    background-color: #1e1e1e;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: 600px;
-    color: #f0f0f0;
-  }
-  
-  h1,
-  h2 {
-    text-align: center;
-    color: #ff9800;
-  }
-  
-  form {
-    margin-top: 2rem;
-  }
-  
-  input[type="checkbox"] {
-    margin-right: 10px;
-    transform: scale(1.2);
-    accent-color: #ff9800;
-  }
-  
-  select {
-    width: 100%;
-    padding: 0.7rem;
-    margin: 1rem 0;
-    background-color: #2a2a2a;
-    border: 1px solid #444;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 16px;
-  }
-  
-  button[type="submit"] {
-    display: block;
-    width: 100%;
-    padding: 0.7rem;
-    background-color: #ff9800;
-    border: none;
-    border-radius: 5px;
-    color: #121212;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 1rem;
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #e68900;
-  }
-  
-  .game-list {
-    margin-top: 1rem;
-  }
-  
-  .game-item {
-    padding: 0.7rem 1rem;
-    background-color: #2a2a2a;
-    margin-bottom: 1rem;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 16px;
-    color: #f0f0f0;
-    transition: background-color 0.2s ease;
-  }
-  
-  .game-item:hover {
-    background-color: #333333;
-  }
-  
-  .cancel-button {
-    text-decoration: none;
-    text-align: center;
-    display: block;
-    width: 578px;
-    padding: 0.7rem;
-    background-color: #ff9800;
-    border: none;
-    border-radius: 5px;
-    color: #121212;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 1rem;
-  
-  }
-  
-  .cancel-button:hover {
-    background-color: #e68900;
-  }
+  max-width: 800px;
+  margin: 2rem auto;
+  background-color: #1e1e1e;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  color: #f0f0f0;
+}
+
+h1,
+h2 {
+  text-align: center;
+  color: #ff9800;
+}
+
+form {
+  margin-top: 2rem;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+  transform: scale(1.2);
+  accent-color: #ff9800;
+}
+
+select {
+  width: 100%;
+  padding: 0.7rem;
+  margin: 1rem 0;
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+}
+
+button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 0.7rem;
+  background-color: #ff9800;
+  border: none;
+  border-radius: 5px;
+  color: #121212;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+button[type="submit"]:hover {
+  background-color: #e68900;
+}
+
+.game-list {
+  margin-top: 1rem;
+}
+
+.game-item {
+  padding: 0.7rem 1rem;
+  background-color: #2a2a2a;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  color: #f0f0f0;
+  transition: background-color 0.2s ease;
+}
+
+.game-item:hover {
+  background-color: #333333;
+}
+
+.cancel-button {
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  width: 578px;
+  padding: 0.7rem;
+  background-color: #ff9800;
+  border: none;
+  border-radius: 5px;
+  color: #121212;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.cancel-button:hover {
+  background-color: #e68900;
+}
+
+/* Harga asli dengan garis coret */
+.original-price {
+  text-decoration: line-through;
+  color: #888; /* Warna abu-abu */
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+/* Harga diskon */
+.discount-price {
+  color: #e53935; /* Warna merah */
+  font-weight: bold;
+  font-size: 16px;
+}
+
+

@@ -9,52 +9,88 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Ambil daftar game yang tersedia
-$query_games = "SELECT * FROM games";
+// Ambil daftar game yang tersedia dengan diskon
+$query_games = "
+    SELECT games.*, 
+           discount_events.discount_type, 
+           discount_events.discount_value, 
+           discount_events.start_date, 
+           discount_events.end_date
+    FROM games
+    LEFT JOIN discount_event_games ON games.id = discount_event_games.game_id
+    LEFT JOIN discount_events ON discount_event_games.event_id = discount_events.id
+";
 $result_games = $conn->query($query_games);
 
-// Proses ketika form dikirim
+$games = [];
+$current_time = date('Y-m-d H:i:s');
+
+// Proses setiap game dan hitung harga diskon jika berlaku
+while ($row = $result_games->fetch_assoc()) {
+    $game_id = $row['id'];
+    if (!isset($games[$game_id])) {
+        $games[$game_id] = $row;
+        $games[$game_id]['discount_price'] = (float) $row['price'];
+    }
+
+    // Cek apakah diskon aktif
+    if (
+        !empty($row['discount_type']) &&
+        !empty($row['start_date']) &&
+        !empty($row['end_date']) &&
+        $row['start_date'] <= $current_time &&
+        $row['end_date'] >= $current_time
+    ) {
+        $original_price = (float) $row['price'];
+        $discount_price = $original_price;
+
+        if ($row['discount_type'] == 'percentage') {
+            $discount_price = $original_price * (1 - $row['discount_value'] / 100);
+        } elseif ($row['discount_type'] == 'fixed') {
+            $discount_price = $original_price - $row['discount_value'];
+        }
+
+        $discount_price = max($discount_price, 0); // Pastikan harga tidak negatif
+
+        if ($discount_price < $games[$game_id]['discount_price']) {
+            $games[$game_id]['discount_price'] = $discount_price;
+            $games[$game_id]['has_discount'] = true;
+        }
+    }
+}
+
+// Proses pembelian
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['payment_method'])) {
     if (isset($_POST['game_ids']) && !empty($_POST['game_ids'])) {
-        $game_ids = $_POST['game_ids']; // Daftar ID game yang dipilih
+        $game_ids = $_POST['game_ids'];
         $payment_method = $_POST['payment_method'];
         $total_amount = 0;
 
-        // Hitung total harga dari game yang dipilih
+        // Hitung total harga berdasarkan harga diskon
         foreach ($game_ids as $game_id) {
-            $query = "SELECT price FROM games WHERE id = ?";
-            $stmt = $conn->prepare($query);
-            if ($stmt === false) {
-                die('Error preparing query: ' . $conn->error);
+            if (isset($games[$game_id])) {
+                $total_amount += $games[$game_id]['discount_price'];
             }
-            $stmt->bind_param("i", $game_id);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $game = $result->fetch_assoc();
-            $total_amount += $game['price'];
         }
 
-        // Menyimpan transaksi untuk setiap game
-        $status = "pending"; // Status sementara
+        // Simpan transaksi
+        $status = "pending";
         foreach ($game_ids as $game_id) {
             $query_purchase = "INSERT INTO transactions (user_id, game_id, amount, payment_method, status, total_amount, transaction_date) 
                                VALUES (?, ?, ?, ?, ?, ?, NOW())";
             $stmt_purchase = $conn->prepare($query_purchase);
-            if ($stmt_purchase === false) {
-                die('Error preparing query: ' . $conn->error);
-            }
             $stmt_purchase->bind_param("iiisss", $user_id, $game_id, $total_amount, $payment_method, $status, $total_amount);
 
             if (!$stmt_purchase->execute()) {
                 echo "Error executing purchase query: " . $stmt_purchase->error;
-                exit;
+                exit();
             }
         }
 
         $_SESSION['total_amount'] = $total_amount;
         $_SESSION['payment_method'] = $payment_method;
         $_SESSION['games'] = $game_ids;
-        header("Location: confirmation.php"); // Arahkan ke halaman konfirmasi
+        header("Location: confirmation.php");
         exit();
     } else {
         echo "Silakan pilih game yang ingin dibeli!";
@@ -78,15 +114,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['payment_method'])) {
         <form method="POST" action="buy_game.php">
             <h2>Pilih Game yang Ingin Dibeli</h2>
             <div class="game-list">
-                <?php while ($game = $result_games->fetch_assoc()) { ?>
+                <?php foreach ($games as $game): ?>
                     <div class="game-item">
                         <label>
                             <input type="checkbox" name="game_ids[]" value="<?php echo $game['id']; ?>">
-                            <?php echo $game['title']; ?> - Rp <?php echo number_format($game['price'], 0, ',', '.'); ?>
+                            <?php echo htmlspecialchars($game['title']); ?> -
+                            <?php if (isset($game['has_discount']) && $game['has_discount']): ?>
+                                <span class="original-price">Rp <?php echo number_format($game['price'], 0, ',', '.'); ?></span>
+                                <span class="discount-price">Rp
+                                    <?php echo number_format($game['discount_price'], 0, ',', '.'); ?></span>
+                            <?php else: ?>
+                                Rp <?php echo number_format($game['price'], 0, ',', '.'); ?>
+                            <?php endif; ?>
                         </label>
                     </div>
-                <?php } ?>
+                <?php endforeach; ?>
             </div>
+
+
 
             <h2>Pilih Metode Pembayaran</h2>
             <select name="payment_method" required>
