@@ -28,18 +28,20 @@ while ($row = $result->fetch_assoc()) {
     if (!isset($games[$game_id])) {
         $games[$game_id] = $row;
         // Initialize with original price
-        $games[$game_id]['discount_price'] = (float)$row['price'];
+        $games[$game_id]['discount_price'] = (float) $row['price'];
     }
 
     // Check if discount data exists and if the discount is currently active
     $current_time = date('Y-m-d H:i:s');
-    if (!empty($row['discount_type']) &&
+    if (
+        !empty($row['discount_type']) &&
         !empty($row['start_date']) &&
         !empty($row['end_date']) &&
         $row['start_date'] <= $current_time &&
-        $row['end_date'] >= $current_time) {
+        $row['end_date'] >= $current_time
+    ) {
 
-        $original_price = (float)$row['price'];
+        $original_price = (float) $row['price'];
         $discount_price = $original_price;
 
         if ($row['discount_type'] == 'percentage') {
@@ -75,7 +77,8 @@ while ($row = $result->fetch_assoc()) {
 <body>
     <div id="game-list" class="game-list">
         <form method="GET" action="">
-            <input type="text" name="search" placeholder="Search games..." value="<?php echo htmlspecialchars($search); ?>">
+            <input type="text" name="search" placeholder="Search games..."
+                value="<?php echo htmlspecialchars($search); ?>">
             <button type="submit">Search</button>
         </form>
 
@@ -83,16 +86,23 @@ while ($row = $result->fetch_assoc()) {
             <?php foreach ($games as $game): ?>
                 <div class="game-item">
                     <a href="game_detail.php?id=<?php echo $game['id']; ?>">
+                        <!-- Gambar game -->
+                        <img src="uploads/<?php echo htmlspecialchars($game['image']); ?>"
+                            alt="<?php echo htmlspecialchars($game['title']); ?>">
+
+                        <!-- Informasi game -->
                         <div class="game-info">
                             <div class="game-title"><?php echo htmlspecialchars($game['title']); ?></div>
                             <?php
-                            $original_price = (float)$game['price'];
+                            $original_price = (float) $game['price'];
                             $discount_price = isset($game['discount_price']) ? $game['discount_price'] : $original_price;
                             ?>
                             <?php if (isset($game['has_discount']) && $game['has_discount'] && $discount_price < $original_price): ?>
                                 <div class="game-price">
-                                    <span class="original-price">Rp <?php echo number_format($original_price, 2, ',', '.'); ?></span>
-                                    <span class="discount-price">Rp <?php echo number_format($discount_price, 2, ',', '.'); ?></span>
+                                    <span class="original-price">Rp
+                                        <?php echo number_format($original_price, 2, ',', '.'); ?></span>
+                                    <span class="discount-price">Rp
+                                        <?php echo number_format($discount_price, 2, ',', '.'); ?></span>
                                 </div>
                             <?php else: ?>
                                 <div class="game-price">Rp <?php echo number_format($original_price, 2, ',', '.'); ?></div>
